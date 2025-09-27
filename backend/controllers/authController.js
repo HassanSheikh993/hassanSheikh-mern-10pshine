@@ -61,5 +61,6 @@ export const logoutUser = (req,res,next)=>{
   res.status(200).json({ message: 'Logged out successfully', status: true });
  }catch(err){
 logger.error({ err }, "Error in logoutUser function");
+next(err)
  }
 }
