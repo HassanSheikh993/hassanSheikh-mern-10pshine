@@ -17,7 +17,7 @@ export const registerUser = async(req,res,next)=>{
             password:password
         })
 
-        res.status(201).json({message:"Account Created",user:newUser})
+        res.status(201).json({message:"Account Created",userName:newUser.name,userEmail:newUser.email})
     }catch(err){
     logger.error({ err }, "Error in registerUser function");
         next(err);
@@ -44,7 +44,7 @@ export const loginUser = async(req,res,next)=>{
 });
 
 
-        res.json({ success: true, message: "Login successful",userEmail:userExist.email});
+        res.json({ success: true, message: "Login successful",userEmail:userExist.email,userName:userExist.name});
 
 
     }catch(err){
