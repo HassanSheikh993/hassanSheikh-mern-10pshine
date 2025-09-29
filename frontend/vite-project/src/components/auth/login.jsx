@@ -51,7 +51,17 @@ export const Login = () => {
 
   return (
     <>
-      <form action="" onSubmit={handleFormSubmit} className="login_form">
+    <div className="login_parent">
+        <div className="login_container">
+
+<div className="auth_side_part">
+  <h1>NOTE APP</h1>
+<img src="/images/auth2.jpg" alt="" />
+</div>
+
+
+        
+        <form action="" onSubmit={handleFormSubmit} className="login_form">
         <label htmlFor="" className="login_label">
           Email
         </label>
@@ -86,11 +96,15 @@ export const Login = () => {
         </button>
 
         <input type="submit" className="login_submit" />
-      </form>
 
-      <p className="login_goToRegister" onClick={handleNavigateToRegister}>Create A New Account</p>
+          <p className="login_goToRegister" onClick={handleNavigateToRegister}>Create A New Account</p>
 
       {loginMessage && <p className="login_message">{loginMessage}</p>}
+      </form>
+
+      </div>
+
+    </div>
     </>
   );
 };

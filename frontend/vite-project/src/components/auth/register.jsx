@@ -50,6 +50,13 @@ export const Register = () => {
 
   return (
     <>
+<div className="register_parent">
+  <div className="register_container">
+  
+    <div className="auth_side_part">
+  <h1>NOTE APP</h1>
+<img src="/images/auth2.jpg" alt="" />
+</div>
       <form
         action=""
         onSubmit={handleFormSubmit}
@@ -102,13 +109,17 @@ export const Register = () => {
         </button>
 
         <input type="submit" className="register_submit" />
-      </form>
 
-      <p className="register_goToLogin" onClick={handleNavigateToLogin}>Already Have An Account?</p>
+           <p className="register_goToLogin" onClick={handleNavigateToLogin}>Already Have An Account?</p>
 
       {registerMessage && (
         <p className="register_message">{registerMessage}</p>
       )}
+      </form>
+</div>
+
+</div>
+   
     </>
   );
 };
