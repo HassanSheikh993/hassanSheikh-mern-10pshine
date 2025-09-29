@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { registerUserApi } from "../../services/authService";
 import "../../styles/register.css"
+import { useNavigate } from "react-router";
 
 export const Register = () => {
+  const navigate = useNavigate()
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -21,6 +23,10 @@ export const Register = () => {
 
   function handlePasswordToggle() {
     setShowPassword(!showPassword);
+  }
+
+  function handleNavigateToLogin(){
+    navigate("/login")
   }
 
   async function handleFormSubmit(e) {
@@ -97,6 +103,8 @@ export const Register = () => {
 
         <input type="submit" className="register_submit" />
       </form>
+
+      <p className="register_goToLogin" onClick={handleNavigateToLogin}>Already Have An Account?</p>
 
       {registerMessage && (
         <p className="register_message">{registerMessage}</p>

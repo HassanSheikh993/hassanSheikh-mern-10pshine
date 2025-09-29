@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { userLoginApi } from "../../services/authService";
 import "../../styles/login.css"
+import { useNavigate } from "react-router";
+
 
 export const Login = () => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     email: "",
     password: ""
@@ -22,11 +25,16 @@ export const Login = () => {
     setShowPassword(!showPassword);
   }
 
+  function handleNavigateToRegister(){
+    navigate("/register")
+  }
+
   async function handleFormSubmit(e) {
     e.preventDefault();
     try {
       const result = await userLoginApi(userData.email, userData.password);
       setLoginMessage(result.message);
+      navigate("/")
     } catch (error) {
       if (
         error.response &&
@@ -79,6 +87,8 @@ export const Login = () => {
 
         <input type="submit" className="login_submit" />
       </form>
+
+      <p className="login_goToRegister" onClick={handleNavigateToRegister}>Create A New Account</p>
 
       {loginMessage && <p className="login_message">{loginMessage}</p>}
     </>
