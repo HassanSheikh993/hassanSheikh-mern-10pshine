@@ -1,0 +1,152 @@
+/* register.css */
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.register_parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+  padding: 20px;
+}
+
+.register_container {
+  display: flex;
+  flex-direction: row;
+  width: 900px;
+  max-width: 100%;
+  height: 550px;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* form styling */
+.register_form {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register_label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.register_input {
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border 0.3s;
+}
+
+.register_input:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.register_toggleBtn {
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border: none;
+  background: #f3f3f3;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: fit-content;
+}
+
+.register_toggleBtn:hover {
+  background: #e5e7eb;
+}
+
+.register_submit {
+  padding: 12px;
+  background: #3b82f6;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.register_submit:hover {
+  background: #2563eb;
+}
+
+.register_goToLogin {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #4a90e2;
+  text-align: center;
+  cursor: pointer;
+}
+
+.register_goToLogin:hover {
+  text-decoration: underline;
+}
+
+.register_message {
+  margin-top: 15px;
+  text-align: center;
+  color: red;
+  font-weight: 500;
+}
+
+/* Right side image part */
+.auth_side_part {
+  flex: 1;
+  background: #f4f7fb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+ 
+}
+
+.auth_side_part h1 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #4a90e2;
+}
+
+.auth_side_part img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.auth_side_part {
+  clip-path: ellipse(100% 100% at 0% 50%);
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .register_container {
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  .auth_side_part {
+    clip-path: none;
+    padding: 10px;
+  }
+
+  .auth_side_part img {
+    max-width: 100%;
+  }
+}
