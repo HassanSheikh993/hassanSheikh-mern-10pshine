@@ -7,6 +7,7 @@ import { noteRoutes } from "./routes/noteRoute.js";
 import { mongoConnection } from "./config/db.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { logger } from "./utils/logger.js";
+import { redisClient } from "./config/redis.js";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 
 
 await mongoConnection;
+await redisClient;
 
 app.use("/api/user",userRoutes);
 app.use("/api/note",noteRoutes)
