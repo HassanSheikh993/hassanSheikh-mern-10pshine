@@ -1,5 +1,6 @@
 import { Notes } from "../models/note.js";
 import { logger } from "../utils/logger.js";
+import { redisClient } from "../config/redis.js";
 
 export const createNote = async (req, res, next) => {
     try {
@@ -13,6 +14,7 @@ export const createNote = async (req, res, next) => {
             color,
             user: userID
         })
+        await redisClient.del(`notes:${userID}`);
 
         res.status(200).json({ message: "Created SuccessFully", success: true })
 
@@ -26,10 +28,18 @@ export const createNote = async (req, res, next) => {
 export const getNotesByUser = async (req, res, next) => {
     try {
         const userID = req.user.id;
+        const cacheKey = `notes:${req.user.id}`;
+        const redisData = await redisClient.get(cacheKey);
+        if(redisData){
+            logger.info("Serving Notes from Redis");
+            return res.status(200).json(JSON.parse(redisData))
+        }
         const getNotes = await Notes.find({ user: userID });
         if (!getNotes || getNotes.length === 0) {
             return res.status(200).json([]);
         }
+
+        await redisClient.set(cacheKey,JSON.stringify(getNotes),"EX",60)
 
         res.status(200).json(getNotes);
 
@@ -43,11 +53,13 @@ export const getNotesByUser = async (req, res, next) => {
 export const deleteNote = async (req, res, next) => {
     try {
         const { noteID } = req.body;
-        if (!noteID) {
+        const userID = req.user.id;
+        if (!mongoose.Types.ObjectId.isValid(noteID)) {
             return res.status(400).json({ message: "Nothing Selected", success: false });
         }
 
-        const isDelete = await Notes.deleteOne({ _id: noteID });
+        const isDelete = await Notes.deleteOne({ _id: noteID,user:userID });
+        await redisClient.del(`notes:${userID}`);
 
         if (isDelete.deletedCount >= 1) {
             return res.status(200).json({ message: "Deleted Successfully", success: true });
@@ -63,8 +75,9 @@ export const deleteNote = async (req, res, next) => {
 export const updateNote = async (req, res, next) => {
     try {
         const { title, content, color, noteID } = req.body;
+        const userID = req.user.id;
 
-        if (!noteID) {
+        if (!mongoose.Types.ObjectId.isValid(noteID)) {
             return res.status(400).json({ message: "Nothing Selected", success: false });
         }
 
@@ -74,7 +87,8 @@ export const updateNote = async (req, res, next) => {
         if (content) updatedFields.content = content;
         if (color) updatedFields.color = color
 
-        const result = await Notes.updateOne({ _id: noteID }, { $set: updatedFields });
+        const result = await Notes.updateOne({ _id: noteID,user:userID }, { $set: updatedFields });
+        await redisClient.del(`notes:${userID}`);
 
         if (result.matchedCount === 0) {
             return res.status(404).json({ message: "Note not found", success: false });
