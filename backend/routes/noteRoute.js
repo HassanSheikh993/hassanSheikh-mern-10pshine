@@ -1,5 +1,5 @@
 import express from "express";
-import { createNote, deleteNote, getNotesByUser,updateNote } from "../controllers/noteController.js";
+import { createNote, deleteNote, getNotesByUser,getSingleNote,searchNotes,updateNote } from "../controllers/noteController.js";
 import { auth } from "../middlewares/authMiddleWare.js";
 
 export const noteRoutes = express.Router();
@@ -12,3 +12,5 @@ noteRoutes.post("/create",auth,createNote);
 noteRoutes.get("/getNotes",auth,getNotesByUser);
 noteRoutes.delete("/delete",auth,deleteNote);
 noteRoutes.put("/update",auth,updateNote)
+noteRoutes.get("/getSingleNote",auth,getSingleNote)
+noteRoutes.get("/search",auth,searchNotes)
