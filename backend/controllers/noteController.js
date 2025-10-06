@@ -1,6 +1,7 @@
 import { Notes } from "../models/note.js";
 import { logger } from "../utils/logger.js";
 import { redisClient } from "../config/redis.js";
+import mongoose from "mongoose";
 
 export const createNote = async (req, res, next) => {
     try {
@@ -103,3 +104,47 @@ export const updateNote = async (req, res, next) => {
         next(err);
     }
 }
+
+
+export const getSingleNote =async (req,res,next) => {
+  try{
+    const {noteID} = req.body;
+    if(!mongoose.Types.ObjectId.isValid(noteID))  return res.status(400).json({message:"Invalid note Id"});
+
+    const getNote = await Notes.findOne({_id:noteID});
+     if (!getNote) return res.status(200).json([]);
+    
+     res.status(200).json(getNote)   
+
+
+  }catch(err){
+    logger.error({err},"Error In getSingleNote Function");
+    next(err);
+  }
+}
+
+
+export const searchNotes = async (req, res, next) => {
+  try {
+    const { query } = req.query;
+    const userID = req.user.id;
+
+    if (!query) {
+      return res.status(400).json({
+        message: "Search query required",
+        success: false,
+        notes: [],
+      });
+    }
+
+    const notes = await Notes.find({
+      user: userID,
+      title: { $regex: query, $options: "i" }, 
+    });
+
+    res.status(200).json({ success: true, notes });
+  } catch (err) {
+    logger.error({ err }, "Error In searchNotes Function");
+    next(err);
+  }
+};
