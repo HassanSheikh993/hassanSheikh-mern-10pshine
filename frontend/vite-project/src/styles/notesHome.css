@@ -1,0 +1,125 @@
+/* Notes Home Container */
+.notesHome_container {
+  margin-left: 80px; /* Space for left navbar */
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* Search Container */
+.notesHome_searchContainer {
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto 30px auto;
+  gap: 10px;
+}
+
+.notesHome_searchInput {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.notesHome_searchInput:focus {
+  border-color: #666;
+}
+
+.notesHome_searchBtn {
+  padding: 12px 24px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.notesHome_searchBtn:hover {
+  background-color: #555;
+}
+
+/* Message Styling */
+.notesHome_message {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  margin: 50px 0;
+}
+
+/* Notes Grid */
+.notesHome_notesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+/* Note Card */
+.notesHome_noteCard {
+  width: 250px;
+  min-height: 200px;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.notesHome_noteCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Note Title */
+.notesHome_noteTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #333;
+  line-height: 1.3;
+}
+
+/* Note Content */
+.notesHome_noteContent {
+  flex: 1;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+/* Note Date */
+.notesHome_noteDate {
+  font-size: 12px;
+  color: #666;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.notesHome_noteCard_topPart{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notesHome_noteCard_topPart_icon{
+  column-gap: 10px;
+}
+
+.notesHome_noteCard_topPart_icon i{
+padding-left: 10px;
+}

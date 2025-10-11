@@ -1,0 +1,116 @@
+.editNote_container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.editNote_container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 24px;
+  color: #333;
+}
+
+.editNote_form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ✅ color circles at top */
+.editNote_colorPicker {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* hide radio inputs */
+.editNote_colorRadio {
+  display: none;
+}
+
+/* visible color circles */
+.editNote_colorOption {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid transparent;
+}
+
+/* highlight selected */
+.editNote_colorOption.editNote_selected {
+  box-shadow: 0 0 0 3px #00000040;
+  transform: scale(1.1);
+  border: 2px solid #333;
+}
+
+/* input + labels */
+.editNote_label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.editNote_input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+}
+
+/* ✅ React Quill editor */
+.editNote_editor {
+  height: 180px;
+  border-radius: 6px;
+  background-color: #fff;
+  margin-bottom: 25px;
+}
+
+/* make toolbar rounded & nice */
+.editNote_editor .ql-toolbar {
+  border-radius: 6px 6px 0 0;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
+
+/* editor inner area */
+.editNote_editor .ql-container {
+  border-radius: 0 0 6px 6px;
+  border: 1px solid #ccc;
+}
+
+/* submit button */
+.editNote_submit {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.editNote_submit:hover {
+  background-color: #0056b3;
+}
+
+/* success/error message */
+.editNote_message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 500;
+  color: #333;
+}
