@@ -54,6 +54,14 @@ Each note is securely tied to the authenticated user. The app also includes **lo
 
 ---
 
+## Environment Variables
+ - PORT=8000
+ - MONGO_URI=your_mongodb_connection_string
+ - JWT_SECRET=your_secret_key
+ - REDIS_URL=your_redis_connection_url
+
+---
+
 ## Setup Instructions
 
 ### 1️⃣ Clone the Repository
